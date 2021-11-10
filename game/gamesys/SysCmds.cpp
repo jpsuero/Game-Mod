@@ -393,6 +393,81 @@ void Cmd_KillRagdolls_f( const idCmdArgs &args ) {
 // RAVEN END
 }
 
+//choose hero begin
+//thor
+void Thor(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+
+		//godmode enabled because thor is a god
+		player->godmode = true;
+		GiveStuffToPlayer(player, "weapon_lightninggun", "");
+
+		player->fl.notarget = false;
+		player->noclip = true;
+		gameLocal.Printf("thor has been selected!\n");
+
+}
+
+//hulk
+void Hulk(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+
+	//clear previous weapons
+	player->inventory.weapons = 0;
+
+
+	//undying enabled because hulk is a god
+	player->godmode = false;
+	player->fl.notarget = false;
+	player->undying = true;
+	player->noclip = false;
+	GiveStuffToPlayer(player, "item_health_mega", "");
+	GiveStuffToPlayer(player, "weapon_shotgun", "");
+	gameLocal.Printf("hulk has been selected!\n");
+
+}
+
+//ironman
+void Ironman(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+
+	//clear previous weapons
+	player->inventory.weapons = 0;
+
+
+	//ironman can fly but is weak
+	player->godmode = false;
+	player->undying = false;
+	player->noclip = true;
+	player->fl.notarget = false;
+	
+	GiveStuffToPlayer(player, "weapon_machinegun", "");
+	GiveStuffToPlayer(player, "weapon_railgun", "");
+	GiveStuffToPlayer(player, "weapon_hyperblaster", "");
+	gameLocal.Printf("ironman has been selected!\n");
+
+}
+
+//invisible woman
+void InvisibleWoman(const idCmdArgs& args) {
+	idPlayer* player = gameLocal.GetLocalPlayer();
+
+	//clear previous weapons
+	player->inventory.weapons = 0;
+
+
+	//invisibilty toggled
+	player->fl.notarget = true;
+	player->godmode = false;
+	player->undying = false;
+	player->noclip = false;
+
+	GiveStuffToPlayer(player, "weapon_dmg", "");
+	
+	gameLocal.Printf("invisible woman has been selected!\n");
+
+}
+
 
 // RITUAL BEGIN
 // squirrel: added DeadZone multiplayer mode
@@ -3231,6 +3306,14 @@ void idGameLocal::InitConsoleCommands( void ) {
 // squirrel: Mode-agnostic buymenus
 	cmdSystem->AddCommand( "buyMenu",				Cmd_ToggleBuyMenu_f,		CMD_FL_GAME,				"Toggle buy menu (if in a buy zone and the game type supports it)" );
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
+	
+	//choose hero commands
+	cmdSystem->AddCommand("thor", Thor, CMD_FL_GAME, "select thor");
+	cmdSystem->AddCommand("hulk", Hulk, CMD_FL_GAME, "select hulk");
+	cmdSystem->AddCommand("ironman", Ironman, CMD_FL_GAME, "select ironman");
+	cmdSystem->AddCommand("invisiblewoman", InvisibleWoman, CMD_FL_GAME, "select invisible woman");
+	
+
 // RITUAL END
 
 }
