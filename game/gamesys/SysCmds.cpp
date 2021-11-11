@@ -398,6 +398,7 @@ void Cmd_KillRagdolls_f( const idCmdArgs &args ) {
 void Thor(const idCmdArgs& args) {
 	idPlayer* player = gameLocal.GetLocalPlayer();
 
+		
 		//godmode enabled because thor is a god
 		player->godmode = true;
 		GiveStuffToPlayer(player, "weapon_lightninggun", "");
@@ -420,7 +421,7 @@ void Hulk(const idCmdArgs& args) {
 	player->inventory.weapons = 0;
 
 	//set player model
-	player->SetModel("model__monster_strogg_grunt");
+	player->SetModel("model_monster_grunt");
 
 	//undying enabled because hulk is a god
 	player->godmode = false;
