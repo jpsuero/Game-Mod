@@ -402,6 +402,9 @@ void Thor(const idCmdArgs& args) {
 		player->godmode = true;
 		GiveStuffToPlayer(player, "weapon_lightninggun", "");
 
+		//set player model
+		player->SetModel("model_player_marine");
+
 		player->fl.notarget = false;
 		player->noclip = true;
 		gameLocal.Printf("thor has been selected!\n");
@@ -411,16 +414,20 @@ void Thor(const idCmdArgs& args) {
 //hulk
 void Hulk(const idCmdArgs& args) {
 	idPlayer* player = gameLocal.GetLocalPlayer();
+	
 
 	//clear previous weapons
 	player->inventory.weapons = 0;
 
+	//set player model
+	player->SetModel("model__monster_strogg_grunt");
 
 	//undying enabled because hulk is a god
 	player->godmode = false;
 	player->fl.notarget = false;
 	player->undying = true;
 	player->noclip = false;
+	
 	GiveStuffToPlayer(player, "item_health_mega", "");
 	GiveStuffToPlayer(player, "weapon_shotgun", "");
 	gameLocal.Printf("hulk has been selected!\n");
@@ -434,6 +441,8 @@ void Ironman(const idCmdArgs& args) {
 	//clear previous weapons
 	player->inventory.weapons = 0;
 
+	//set player model
+	player->SetModel("model_player_strogg");
 
 	//ironman can fly but is weak
 	player->godmode = false;
@@ -455,6 +464,8 @@ void InvisibleWoman(const idCmdArgs& args) {
 	//clear previous weapons
 	player->inventory.weapons = 0;
 
+	//set player model
+	player->SetModel("model_monster_strogg_marine");
 
 	//invisibilty toggled
 	player->fl.notarget = true;
